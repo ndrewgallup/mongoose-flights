@@ -32,7 +32,7 @@ app.use(
 
 // mounted routers
 app.use('/', indexRouter)
-app.use('/users', flightsRouter)
+app.use('/flights', flightsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
