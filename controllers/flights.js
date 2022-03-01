@@ -60,15 +60,7 @@ function update(req, res) {
   })
 }
 
-function edit(req, res) {
-  Flight.findById(req.params.id, function(error, flight){
-    res.render('flights/edit', {
-      flight,
-      error,
-      title: "Edit Flight",
-    })
-  })
-}
+
 
 export {
   newFlight as new,
@@ -78,5 +70,4 @@ export {
   createTicket,
   deleteFlight as delete,
   update,
-  edit,
 }
