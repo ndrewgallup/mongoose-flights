@@ -9,6 +9,7 @@ router.get('/:id', flightsCtrl.show)
 
 //POST- 3000/
 router.post('/', flightsCtrl.create)
+router.post('/:id/tickets', flightsCtrl.createTicket)
 
 export {
   router
