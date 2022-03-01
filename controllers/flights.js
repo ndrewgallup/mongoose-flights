@@ -20,8 +20,8 @@ function create(req, res) {
 function index(req, res) {
   Flight.find({}, function(error, flights){
     res.render('flights/index', {
-      flights: flights,
-      error: error,
+      flights,
+      error,
       title: 'All Flights',
     })
   })
@@ -45,10 +45,38 @@ function createTicket(req, res) {
   })
 }
 
+function deleteFlight(req, res) {
+  Flight.findByIdAndDelete(req.params.id, function(error, flight){
+    res.redirect('/flights')
+  })
+}
+
+function update(req, res) {
+  for (let key in req.body) {
+    if (req.body[key] === '') delete req.body[key]
+  }
+  Flight.findByIdAndUpdate(req.params.id, req.body, function(error, flight) {
+    res.redirect(`/flights/${flight._id}`)
+  })
+}
+
+function edit(req, res) {
+  Flight.findById(req.params.id, function(error, flight){
+    res.render('flights/edit', {
+      flight,
+      error,
+      title: "Edit Flight",
+    })
+  })
+}
+
 export {
   newFlight as new,
   create,
   index,
   show,
   createTicket,
+  deleteFlight as delete,
+  update,
+  edit,
 }
